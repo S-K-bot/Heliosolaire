@@ -1,0 +1,9 @@
+{
+  "name": "Simulateur & Optimiseur Solaire Domestique",
+  "description": "Outil d'ingénierie et de calcul pour dimensionner, optimiser l'autoconsommation et maximiser la rentabilité d'une installation solaire photovoltaïque résidentielle.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
