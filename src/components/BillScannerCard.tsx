@@ -215,15 +215,28 @@ export const BillScannerCard: React.FC<BillScannerCardProps> = ({
         setScanStep('Extraction des tarifs du kWh, de la TVA et de la consommation...');
       }, 2200);
 
-      const res = await fetch('/api/scan-bill', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          imageBase64,
-          mimeType,
-          countryCode: countryProfile.code,
-        }),
-      });
+      let res: Response;
+      try {
+        res = await fetch('/api/scan-bill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            imageBase64,
+            mimeType,
+            countryCode: countryProfile.code,
+          }),
+        });
+      } catch (networkErr: any) {
+        throw new Error(
+          "Le serveur d'analyse IA n'est pas joignable (hébergement statique). Vous pouvez utiliser le bouton 'Exemples de factures' ci-dessus ou saisir directement vos chiffres."
+        );
+      }
+
+      if (res.status === 404) {
+        throw new Error(
+          "Le backend d'analyse IA n'est pas activé sur cet hébergement statique (GitHub Pages). Les calculs et simulateurs fonctionnent parfaitement ! Vous pouvez utiliser les boutons d'exemples ci-dessus."
+        );
+      }
 
       const json = await res.json();
       if (!res.ok || !json.success) {
