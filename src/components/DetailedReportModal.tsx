@@ -65,40 +65,40 @@ export const DetailedReportModal: React.FC<DetailedReportModalProps> = ({
       <div className="fixed inset-0 z-50 overflow-y-auto bg-neutral-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 print:p-0 print:bg-white">
         <div className="bg-white rounded-2xl border border-neutral-200 shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden print:max-h-none print:shadow-none print:border-none print:w-full">
           {/* Modal Header */}
-          <div className="px-6 py-4 border-b border-neutral-200 bg-neutral-50 flex items-center justify-between print:hidden">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-neutral-200 bg-neutral-50 flex flex-wrap items-center justify-between gap-2 print:hidden">
             <div className="flex items-center space-x-2">
-              <FileCheck className="w-5 h-5 text-amber-600" />
-              <h2 className="text-base font-bold text-neutral-900">
-                Rapport d'Étude & Synthèse de Rentabilité Solaire
+              <FileCheck className="w-5 h-5 text-amber-600 shrink-0" />
+              <h2 className="text-sm sm:text-base font-bold text-neutral-900 line-clamp-1">
+                Rapport d'Étude & Synthèse Solaire
               </h2>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center flex-wrap gap-1.5 ml-auto">
               <button
                 type="button"
                 onClick={() => setIsShareOpen(true)}
-                className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs"
+                className="inline-flex items-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs"
                 title="Partager via WhatsApp, Email, Telegram, SMS ou réseaux"
               >
-                <Share2 className="w-4 h-4 mr-1.5 text-emerald-600" />
-                Partager
+                <Share2 className="w-3.5 h-3.5 sm:mr-1.5 text-emerald-600" />
+                <span className="hidden sm:inline">Partager</span>
               </button>
               <button
                 type="button"
                 onClick={() => setIsExplainerOpen(true)}
-                className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 border border-amber-300 text-amber-900 hover:bg-amber-100 transition-colors shadow-2xs"
+                className="inline-flex items-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 border border-amber-300 text-amber-900 hover:bg-amber-100 transition-colors shadow-2xs"
                 title="Comprendre en détail le calcul du taux et du productible"
               >
-                <HelpCircle className="w-4 h-4 mr-1.5 text-amber-600" />
-                Comprendre le calcul
+                <HelpCircle className="w-3.5 h-3.5 sm:mr-1.5 text-amber-600" />
+                <span className="hidden sm:inline">Calcul</span>
               </button>
               <button
                 type="button"
                 onClick={handlePrint}
-                className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-50 transition-colors shadow-2xs"
+                className="inline-flex items-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-50 transition-colors shadow-2xs"
               >
-                <Printer className="w-4 h-4 mr-1.5 text-neutral-500" />
-                Imprimer / PDF
+                <Printer className="w-3.5 h-3.5 sm:mr-1.5 text-neutral-500" />
+                <span className="hidden sm:inline">PDF</span>
               </button>
               <button
                 type="button"

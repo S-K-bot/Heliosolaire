@@ -86,7 +86,8 @@ export const AdMobBanner: React.FC<AdMobBannerProps> = ({
     return (
       <div
         id="admob-bottom-banner"
-        className="fixed bottom-0 left-0 right-0 z-40 bg-neutral-900/95 text-white border-t border-neutral-800 shadow-2xl backdrop-blur-md px-3 py-2 transition-all"
+        style={{ paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))' }}
+        className="fixed bottom-0 left-0 right-0 z-40 bg-neutral-900/95 text-white border-t border-neutral-800 shadow-2xl backdrop-blur-md px-3 pt-2 transition-all"
       >
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
           {/* Ad Label & Advertiser Info */}

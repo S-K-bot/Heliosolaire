@@ -11,6 +11,7 @@ import {
   Sparkles,
   DollarSign,
 } from 'lucide-react';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   onReset: () => void;
@@ -44,7 +45,24 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAdMobConfig,
 }) => {
   const [isResetMenuOpen, setIsResetMenuOpen] = useState(false);
+  const [isAdminMode, setIsAdminMode] = useState(false);
   const resetMenuRef = useRef<HTMLDivElement>(null);
+
+  // Check if admin mode is activated via URL query param (?admin=true or ?admob=true) or localStorage
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const hasAdminParam = params.get('admin') === 'true' || params.get('admob') === 'true' || params.get('monetize') === 'true';
+      if (hasAdminParam) {
+        localStorage.setItem('helios_admin_mode', 'true');
+        setIsAdminMode(true);
+      } else if (localStorage.getItem('helios_admin_mode') === 'true') {
+        setIsAdminMode(true);
+      }
+    } catch {
+      // ignore in sandboxed environments
+    }
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -171,8 +189,8 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-          {/* Bouton Monétisation Google AdMob */}
-          {onOpenAdMobConfig && (
+          {/* Bouton Monétisation Google AdMob (réservé à l'administrateur via ?admin=true) */}
+          {isAdminMode && onOpenAdMobConfig && (
             <button
               id="btn-open-admob"
               type="button"
@@ -185,9 +203,12 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
               </span>
               <DollarSign className="w-3.5 h-3.5 text-amber-600 mr-1" />
-              <span className="hidden sm:inline">AdMob</span>
+              <span className="hidden sm:inline">AdMob (Admin)</span>
             </button>
           )}
+
+          {/* Bouton Installation PWA (Mobile & Desktop) */}
+          <PWAInstallButton />
 
           {/* Bouton Rapport et Bilan */}
           <button
