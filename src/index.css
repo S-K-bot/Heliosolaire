@@ -1,9 +1,60 @@
 @import "tailwindcss";
 
-/* Améliorations tactiles et affichage mobile PWA */
+/* Améliorations tactiles et lisibilité mobile PWA */
 html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+/* Typographie augmentée sur mobile pour éliminer les écritures trop petites */
+@media (max-width: 640px) {
+  /* Échelle typographique plus grande et aérée sur écran smartphone */
+  html {
+    font-size: 16.5px;
+  }
+
+  /* Rendre les micro-textes (text-[10px], text-[11px], text-xs) lisibles sans loupe */
+  .text-\[9px\], .text-\[10px\] {
+    font-size: 0.75rem !important; /* 12px minimum */
+    line-height: 1rem !important;
+  }
+
+  .text-\[11px\] {
+    font-size: 0.8125rem !important; /* 13px */
+    line-height: 1.15rem !important;
+  }
+
+  .text-xs {
+    font-size: 0.875rem !important; /* 14px sur mobile au lieu de 12px */
+    line-height: 1.25rem !important;
+  }
+
+  .text-sm {
+    font-size: 0.95rem !important; /* 15.2px */
+    line-height: 1.35rem !important;
+  }
+
+  /* Cibles tactiles minimum 44px sur mobile */
+  button, select, input[type="button"], input[type="submit"] {
+    min-height: 44px;
+  }
+
+  /* Boutons compacts inline autorisés à 38px */
+  button.py-1, button.py-1\.5 {
+    min-height: 38px;
+  }
+
+  /* Padding interne des cartes et conteneurs aéré sur mobile */
+  .p-5, .p-6 {
+    padding: 1.15rem !important;
+  }
+
+  /* Inputs de formulaires confortables au doigt */
+  input[type="text"], input[type="number"], select {
+    font-size: 1rem !important; /* 16px empêche aussi le zoom forcé d'iOS Safari */
+    min-height: 44px;
+  }
 }
 
 /* Zone de sécurité iPhone encoche (notch) et barre d'accueil */
@@ -26,11 +77,4 @@ body {
 input[type="range"] {
   touch-action: pan-y;
   cursor: pointer;
-}
-
-/* Cibles tactiles mobiles minimum 44px pour les boutons de navigation */
-@media (max-width: 640px) {
-  button, select, input[type="button"], input[type="submit"] {
-    min-height: 38px;
-  }
 }

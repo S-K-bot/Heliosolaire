@@ -37,7 +37,7 @@ import {
 } from './utils/storage';
 import { getCountryProfile } from './data/countries';
 import { getRegionsForCountry } from './data/regions';
-import { Check, MapPin, X, RotateCcw } from 'lucide-react';
+import { Check, MapPin, X, RotateCcw, Sliders, BarChart3, Settings2 } from 'lucide-react';
 
 const COUNTRY_CAPITALS: Record<string, { lat: number; lng: number; city: string }> = {
   FR: { lat: 48.8566, lng: 2.3522, city: 'Paris' },
@@ -187,6 +187,9 @@ export default function App() {
 
   const [isReportOpen, setIsReportOpen] = useState<boolean>(false);
   const [isExplainerOpen, setIsExplainerOpen] = useState<boolean>(false);
+
+  // Onglet actif spécifique sur mobile pour séparer confortablement Paramètres et Graphiques
+  const [mobileTab, setMobileTab] = useState<'config' | 'results'>('config');
 
   // Gestion Google AdMob & Monétisation
   const [adMobSettings, setAdMobSettings] = useState<AdMobSettings>(() => loadAdMobSettings());
@@ -587,38 +590,70 @@ export default function App() {
           systemPowerKWp={config.systemPowerKWp}
         />
 
-        {/* 2-Column Split: Controls vs Visualizations */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left Column: Interactive Configuration Form */}
-          <div className="lg:col-span-5 space-y-6">
-            <ConfigurationForm
-              config={config}
-              shadingDetails={results.shadingDetails}
-              costBreakdown={results.costBreakdown}
-              countryProfile={results.countryProfile}
-              onChange={handleConfigChange}
-            />
+        {/* 2-Column Split: Controls vs Visualizations with dedicated Mobile Tab Switcher */}
+        <div className="space-y-4">
+          {/* Mobile View Switcher (Visible on mobile/tablet screens only) */}
+          <div className="lg:hidden flex bg-neutral-200/80 p-1.5 rounded-xl border border-neutral-300/80 shadow-xs">
+            <button
+              type="button"
+              id="mobile-tab-config"
+              onClick={() => setMobileTab('config')}
+              className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                mobileTab === 'config'
+                  ? 'bg-white text-neutral-950 shadow-sm ring-1 ring-neutral-300'
+                  : 'text-neutral-700 hover:text-neutral-900'
+              }`}
+            >
+              <Settings2 className="w-4 h-4 text-amber-600" />
+              <span>Paramètres & Toiture</span>
+            </button>
+            <button
+              type="button"
+              id="mobile-tab-results"
+              onClick={() => setMobileTab('results')}
+              className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                mobileTab === 'results'
+                  ? 'bg-white text-neutral-950 shadow-sm ring-1 ring-neutral-300'
+                  : 'text-neutral-700 hover:text-neutral-900'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 text-blue-600" />
+              <span>Graphiques & Rentabilité</span>
+            </button>
           </div>
 
-          {/* Right Column: Visual Charts & Technical Analysis */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Chart 1: 24h Hourly Profile */}
-            <HourlySimulationChart
-              hourlyProfiles={results.hourlyProfiles}
-              hasBattery={config.batteryCapacityKWh > 0}
-              hasRouter={config.hasSolarRouter}
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left Column: Interactive Configuration Form */}
+            <div className={`lg:col-span-5 space-y-6 ${mobileTab !== 'config' ? 'hidden lg:block' : 'block'}`}>
+              <ConfigurationForm
+                config={config}
+                shadingDetails={results.shadingDetails}
+                costBreakdown={results.costBreakdown}
+                countryProfile={results.countryProfile}
+                onChange={handleConfigChange}
+              />
+            </div>
 
-            {/* Chart 2: 12-Month Saisonnier Balance */}
-            <MonthlyProductionChart monthlyData={results.monthlyData} />
+            {/* Right Column: Visual Charts & Technical Analysis */}
+            <div className={`lg:col-span-7 space-y-6 ${mobileTab !== 'results' ? 'hidden lg:block' : 'block'}`}>
+              {/* Chart 1: 24h Hourly Profile */}
+              <HourlySimulationChart
+                hourlyProfiles={results.hourlyProfiles}
+                hasBattery={config.batteryCapacityKWh > 0}
+                hasRouter={config.hasSolarRouter}
+              />
 
-            {/* Chart 3: 25-Year Cumulative ROI */}
-            <FinancialProjectionChart
-              projections={results.projections25Years}
-              paybackPeriodYears={results.paybackPeriodYears}
-              netInvestmentCost={results.netInvestmentCost}
-              currency={results.countryProfile?.currency}
-            />
+              {/* Chart 2: 12-Month Saisonnier Balance */}
+              <MonthlyProductionChart monthlyData={results.monthlyData} />
+
+              {/* Chart 3: 25-Year Cumulative ROI */}
+              <FinancialProjectionChart
+                projections={results.projections25Years}
+                paybackPeriodYears={results.paybackPeriodYears}
+                netInvestmentCost={results.netInvestmentCost}
+                currency={results.countryProfile?.currency}
+              />
+            </div>
           </div>
         </div>
       </main>

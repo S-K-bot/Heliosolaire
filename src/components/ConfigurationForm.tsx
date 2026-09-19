@@ -287,78 +287,78 @@ export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({
         </div>
       </div>
 
-      {/* Navigation tabs */}
-      <div className="grid grid-cols-3 sm:grid-cols-6 border-b border-neutral-200 bg-neutral-50/70 text-xs font-semibold text-neutral-600">
+      {/* Navigation tabs avec défilement fluide et labels lisibles sur mobile */}
+      <div className="flex sm:grid sm:grid-cols-6 border-b border-neutral-200 bg-neutral-50/80 text-xs font-semibold text-neutral-600 overflow-x-auto no-scrollbar scroll-smooth">
         <button
           type="button"
           id="tab-solar"
           onClick={() => setActiveTab('solar')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all ${
             activeTab === 'solar'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <SunMedium className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">Installation</span>
+          <SunMedium className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>Installation</span>
         </button>
 
         <button
           type="button"
           id="tab-costs"
           onClick={() => setActiveTab('costs')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all ${
             activeTab === 'costs'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <Receipt className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate font-bold">Volet Coûts</span>
+          <Receipt className="w-4 h-4 text-amber-500 shrink-0" />
+          <span className="font-bold">Volet Coûts</span>
         </button>
 
         <button
           type="button"
           id="tab-consumption"
           onClick={() => setActiveTab('consumption')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all ${
             activeTab === 'consumption'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">Conso</span>
+          <Zap className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>Consommation</span>
         </button>
 
         <button
           type="button"
           id="tab-house"
           onClick={() => setActiveTab('house')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all ${
             activeTab === 'house'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <Home className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">Toiture & Pays</span>
+          <Home className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>Toiture & Pays</span>
         </button>
 
         <button
           type="button"
           id="tab-shading"
           onClick={() => setActiveTab('shading')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all relative ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all relative ${
             activeTab === 'shading'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <Eye className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">Ombrage</span>
+          <Eye className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>Ombrage</span>
           {shadingDetails.lossPercentage > 0 && (
-            <span className="ml-0.5 px-1 py-0.2 rounded text-[9px] font-extrabold bg-amber-200 text-amber-900">
+            <span className="ml-1 px-1.5 py-0.5 rounded text-xs font-extrabold bg-amber-200 text-amber-900">
               -{shadingDetails.lossPercentage}%
             </span>
           )}
@@ -368,15 +368,15 @@ export const ConfigurationForm: React.FC<ConfigurationFormProps> = ({
           type="button"
           id="tab-tariffs"
           onClick={() => setActiveTab('tariffs')}
-          className={`py-3 px-1.5 sm:px-2 flex items-center justify-center gap-1 border-b-2 transition-all ${
+          className={`py-3 px-3 sm:px-2 flex items-center justify-center gap-1.5 border-b-2 whitespace-nowrap shrink-0 sm:shrink transition-all ${
             activeTab === 'tariffs'
               ? 'border-amber-600 text-amber-700 bg-white font-bold shadow-2xs'
               : 'border-transparent hover:text-neutral-900 hover:bg-neutral-100/60'
           }`}
         >
-          <CircleGauge className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="truncate">Réglementation</span>
-          <span className="ml-0.5 px-1 py-0.2 rounded text-[9px] font-extrabold bg-amber-200 text-amber-900">
+          <CircleGauge className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>Réglementation</span>
+          <span className="ml-1 px-1.5 py-0.5 rounded text-xs font-extrabold bg-amber-200 text-amber-900">
             Scan IA
           </span>
         </button>

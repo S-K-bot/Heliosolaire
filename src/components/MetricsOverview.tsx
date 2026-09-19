@@ -149,32 +149,32 @@ export const MetricsOverview: React.FC<MetricsOverviewProps> = ({
 
   return (
     <div className="space-y-4">
-      {/* Primary KPI Grid */}
+      {/* Primary KPI Grid avec typographie augmentée pour smartphone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Économie Annuelle */}
         <div
           id="metric-card-savings"
-          className="bg-white rounded-xl border border-emerald-200/80 p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
+          className="bg-white rounded-xl border border-emerald-200/80 p-4 sm:p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full pointer-events-none -z-0 opacity-60" />
           <div className="relative z-10">
             <div className="flex items-center justify-between text-neutral-500 mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
+              <span className="text-xs sm:text-xs font-bold uppercase tracking-wider text-emerald-800">
                 Gain Annuel (An 1)
               </span>
-              <div className="p-2 bg-emerald-100/70 text-emerald-700 rounded-lg">
-                <PiggyBank className="w-5 h-5" />
+              <div className="p-2.5 bg-emerald-100/70 text-emerald-700 rounded-lg">
+                <PiggyBank className="w-5 h-5 sm:w-5 sm:h-5" />
               </div>
             </div>
             <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              <span className="text-3xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
                 {formatMoney(totalAnnualBenefitYear1, currency)}
               </span>
-              <span className="text-xs font-medium text-emerald-700">/ an</span>
+              <span className="text-sm sm:text-xs font-semibold text-emerald-700">/ an</span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-xs text-neutral-600 gap-1">
+            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-sm sm:text-xs text-neutral-700 gap-1.5 sm:gap-1">
               <div className="flex justify-between">
-                <span>Économies sur facture :</span>
+                <span>Économies facture :</span>
                 <strong className="text-neutral-900 font-semibold">{formatMoney(annualBillSavingsEuros, currency)}</strong>
               </div>
               <div className="flex justify-between">
@@ -188,12 +188,12 @@ export const MetricsOverview: React.FC<MetricsOverviewProps> = ({
         {/* Card 2: Autoconsommation & Autonomie */}
         <div
           id="metric-card-autoconsommation"
-          className="bg-white rounded-xl border border-amber-200/80 p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
+          className="bg-white rounded-xl border border-amber-200/80 p-4 sm:p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full pointer-events-none -z-0 opacity-60" />
           <div className="relative z-10">
             <div className="flex items-center justify-between text-neutral-500 mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-amber-800">
+              <span className="text-xs sm:text-xs font-bold uppercase tracking-wider text-amber-800">
                 Autoconsommation
               </span>
               <div className="flex items-center gap-1.5">
@@ -201,32 +201,32 @@ export const MetricsOverview: React.FC<MetricsOverviewProps> = ({
                   <button
                     type="button"
                     onClick={onOpenExplainer}
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-800 bg-amber-100 hover:bg-amber-200/80 px-2 py-0.5 rounded-md transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber-800 bg-amber-100 hover:bg-amber-200/80 px-2.5 py-1 rounded-md transition-colors cursor-pointer"
                     title="Comprendre le calcul mathématique et physique du taux d'autoconsommation"
                   >
-                    <HelpCircle className="w-3 h-3" />
+                    <HelpCircle className="w-3.5 h-3.5" />
                     <span>Calcul</span>
                   </button>
                 )}
-                <div className="p-2 bg-amber-100/70 text-amber-700 rounded-lg">
-                  <Zap className="w-5 h-5" />
+                <div className="p-2.5 bg-amber-100/70 text-amber-700 rounded-lg">
+                  <Zap className="w-5 h-5 sm:w-5 sm:h-5" />
                 </div>
               </div>
             </div>
             <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              <span className="text-3xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
                 {selfConsumptionRate}%
               </span>
-              <span className="text-xs font-medium text-amber-700">d'énergie utilisée</span>
+              <span className="text-sm sm:text-xs font-semibold text-amber-700">d'énergie utilisée</span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-xs text-neutral-600 gap-1">
+            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-sm sm:text-xs text-neutral-700 gap-1.5 sm:gap-1">
               <div className="flex justify-between">
                 <span>Taux d'autoproduction :</span>
                 <strong className="text-neutral-900 font-semibold">{selfSufficiencyRate}% des besoins</strong>
               </div>
-              <div className="w-full bg-neutral-100 rounded-full h-1.5 mt-1 overflow-hidden">
+              <div className="w-full bg-neutral-100 rounded-full h-2 mt-1 overflow-hidden">
                 <div
-                  className="bg-amber-500 h-1.5 rounded-full transition-all duration-500"
+                  className="bg-amber-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${Math.min(100, selfConsumptionRate)}%` }}
                 />
               </div>
@@ -237,25 +237,25 @@ export const MetricsOverview: React.FC<MetricsOverviewProps> = ({
         {/* Card 3: Temps de retour sur investissement (ROI) */}
         <div
           id="metric-card-payback"
-          className="bg-white rounded-xl border border-blue-200/80 p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
+          className="bg-white rounded-xl border border-blue-200/80 p-4 sm:p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full pointer-events-none -z-0 opacity-60" />
           <div className="relative z-10">
             <div className="flex items-center justify-between text-neutral-500 mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-blue-800">
+              <span className="text-xs sm:text-xs font-bold uppercase tracking-wider text-blue-800">
                 Amortissement (ROI)
               </span>
-              <div className="p-2 bg-blue-100/70 text-blue-700 rounded-lg">
-                <Calendar className="w-5 h-5" />
+              <div className="p-2.5 bg-blue-100/70 text-blue-700 rounded-lg">
+                <Calendar className="w-5 h-5 sm:w-5 sm:h-5" />
               </div>
             </div>
             <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-extrabold text-neutral-900 tracking-tight">
+              <span className="text-3xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
                 {paybackPeriodYears}
               </span>
-              <span className="text-xs font-medium text-blue-700">ans</span>
+              <span className="text-sm sm:text-xs font-semibold text-blue-700">ans</span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-xs text-neutral-600 gap-1">
+            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-sm sm:text-xs text-neutral-700 gap-1.5 sm:gap-1">
               <div className="flex justify-between">
                 <span>Coût net après prime :</span>
                 <strong className="text-neutral-900 font-semibold">
@@ -273,39 +273,39 @@ export const MetricsOverview: React.FC<MetricsOverviewProps> = ({
         {/* Card 4: Bénéfice net cumulé sur 25 ans */}
         <div
           id="metric-card-cumulative"
-          className="bg-white rounded-xl border border-indigo-200/80 p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
+          className="bg-white rounded-xl border border-indigo-200/80 p-4 sm:p-5 shadow-xs relative overflow-hidden transition-all hover:shadow-md"
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full pointer-events-none -z-0 opacity-60" />
           <div className="relative z-10">
             <div className="flex items-center justify-between text-neutral-500 mb-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-indigo-800">
+              <span className="text-xs sm:text-xs font-bold uppercase tracking-wider text-indigo-800">
                 Gain Net sur 25 Ans
               </span>
-              <div className="p-2 bg-indigo-100/70 text-indigo-700 rounded-lg">
-                <TrendingUp className="w-5 h-5" />
+              <div className="p-2.5 bg-indigo-100/70 text-indigo-700 rounded-lg">
+                <TrendingUp className="w-5 h-5 sm:w-5 sm:h-5" />
               </div>
             </div>
             <div className="flex items-baseline space-x-2">
-              <span className="text-3xl font-extrabold text-neutral-900 tracking-tight text-emerald-700">
+              <span className="text-3xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight text-emerald-700">
                 +{formatMoney(cumulativeSavings25Years, currency)}
               </span>
             </div>
-            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-xs text-neutral-600 gap-1">
+            <div className="mt-3 pt-2.5 border-t border-neutral-100 flex flex-col text-sm sm:text-xs text-neutral-700 gap-1.5 sm:gap-1">
               <div className="flex justify-between">
                 <span>Rendement annuel équiv. :</span>
                 <strong className="text-emerald-700 font-semibold">{results.roiPercentage}% / an</strong>
               </div>
-              <div className="flex justify-between items-center text-neutral-500">
+              <div className="flex justify-between items-center text-neutral-600">
                 <span>Matériel garanti 25-30 ans</span>
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Secondary Quick Specs Strip */}
-      <div className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-3 sm:p-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+      {/* Secondary Quick Specs Strip avec texte lisible */}
+      <div className="bg-neutral-50 border border-neutral-200/80 rounded-xl p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-sm sm:text-xs">
         <div className="flex items-center space-x-2.5">
           <div className="p-2 bg-white rounded-lg border border-neutral-200 text-amber-600">
             <Layers className="w-4 h-4" />
